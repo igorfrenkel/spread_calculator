@@ -1,14 +1,15 @@
 require 'bond'
 
-# Assumption: government bonds are sorted
 class SpreadToBenchmark
+  #
+  # Assumption: government bonds are not sorted
   def initialize(government_bonds)
     @government_bonds = government_bonds.sort
   end
 
   def candidate_government_bond_for(corporate_bond)
     candidate_bond=nil
-    candidate_spread=100
+    candidate_spread=100000
     @government_bonds.each do |government_bond|
       current_spread=(government_bond.term-corporate_bond.term).abs
       if current_spread < candidate_spread
@@ -21,6 +22,6 @@ class SpreadToBenchmark
 
   def for(corporate_bond)
     candidate_bond = candidate_government_bond_for(corporate_bond)
-    (corporate_bond.yield - candidate_bond.yield).abs.round(2)
+    [candidate_bond, (corporate_bond.yield - candidate_bond.yield).abs.round(2)]
   end
 end

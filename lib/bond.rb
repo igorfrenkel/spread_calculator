@@ -1,7 +1,9 @@
 class Bond
-  attr_accessor :term, :yield
+  attr_accessor :name, :type, :term, :yield
 
-  def initialize(term, bond_yield)
+  def initialize(name, type, term, bond_yield)
+    @name = name
+    @type = type
     @term = term
     @yield = bond_yield
   end

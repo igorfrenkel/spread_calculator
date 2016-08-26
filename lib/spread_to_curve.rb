@@ -4,7 +4,6 @@ require 'pry'
 
 class SpreadToCurve < SpreadToBenchmark
 
-  # edgecase: at the edges of the curve, need to extrapolate
   def for(corporate_bond)
     candidate_bond = candidate_government_bond_for(corporate_bond)
     index = @government_bonds.find_index(candidate_bond)
